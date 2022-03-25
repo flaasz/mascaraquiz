@@ -1187,8 +1187,7 @@
             }
         }
     </style>
-    <link rel="stylesheet" href="./font.css">
-    <script src="https://code.jquery.com/jquery-3.6.0.min.js" integrity="sha256-/xUj+3OJU5yExlq6GSYGSHk7tPXikynS7ogEvDej/m4=" crossorigin="anonymous"></script>
+    <link rel="stylesheet" href="../font.css">
 </head>
 
 <body>
@@ -2426,15 +2425,38 @@
                                 } else
                                 if (e > l && e > c && e > g) {
                                     winner = "Eyes On";
-                                } else 
+                                } else
                                 if (g > l && g > e && g > c) {
                                     winner = "Eyegasm";
                                 } else {
-                                    winner = "Remis*";
+                                    if (c == l) {
+                                        if (c1>l1) winner = "Cheeky"
+                                        else winner = "Liloosh"
+                                    } else
+                                    if (c == e) {
+                                        if (c1>e1) winner = "Cheeky"
+                                        else winner = "Eyes On"
+                                    } else
+                                    if (c == g) {
+                                        if (c1>g1) winner = "Cheeky"
+                                        else winner = "Eyegasm"
+                                    } else
+                                    if (l == e) {
+                                        if (l1>e1) winner = "Liloosh"
+                                        else winner = "Eyes On"
+                                    } else
+                                    if (l == g) {
+                                        if (l1>g1) winner = "Liloosh"
+                                        else winner = "Eyegasm"
+                                    } else
+                                    if (g == e) {
+                                        if (g1>e1) winner = "Eyegasm"
+                                        else winner = "Eyes On"
+                                    }
+                                    else winner = "błąd."
                                 }
-
-                                $("#q-result").addClass("active");
-                                $("#q-result").html(`
+                                    $("#q-result").addClass("active");
+                                    $("#q-result").html(`
                                 
                                 <div id="q-intro" class="q-box active">
                                 <h2>Wygrywa ${winner}!</h2><br><br><br>
@@ -2446,8 +2468,8 @@
 
                                 
                                 `);
-                                
-                            }
+
+                                }
                         </script>
 
 
