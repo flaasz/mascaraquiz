@@ -1188,7 +1188,8 @@
         }
     </style>
     <link rel="stylesheet" href="./Quiz_files/font.css">
-    <script src="https://code.jquery.com/jquery-3.6.0.min.js" integrity="sha256-/xUj+3OJU5yExlq6GSYGSHk7tPXikynS7ogEvDej/m4=" crossorigin="anonymous"></script>
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"
+        integrity="sha256-/xUj+3OJU5yExlq6GSYGSHk7tPXikynS7ogEvDej/m4=" crossorigin="anonymous"></script>
 </head>
 
 <body>
@@ -2117,17 +2118,31 @@
                             .q-answers {
                                 display: flex;
                                 align-items: center;
-                                justify-content: space-around;
+                                justify-content: center;
+                                gap: 20px;
                                 margin-top: 3em;
                                 user-select: none;
                             }
 
                             .q-answers div {
-                                padding: 2em 4em;
+                                /* padding: 2em 4em; */
                                 background: #dca89e;
                                 cursor: pointer;
                                 font-size: 1.2em;
                                 color: #fff;
+                                height: 4em;
+                                line-height: 4em;
+                                width: 20%;
+                            }
+
+                            @media screen and (max-width: 1200px) {
+                                .q-answers {
+                                    flex-direction: column;
+                                }
+
+                                .q-answers div {
+                                    width: 90%;
+                                }
                             }
 
                             .active {
@@ -2187,7 +2202,7 @@
                                     <div id="q-5-1">Delikatne</div>
                                     <div id="q-5-2">Długie i cienkie</div>
                                     <div id="q-5-3">Naturalnie podkręcone</div>
-                                    <div id="q-5-4">Nie ważne jakie, po prostu je kocham!</div>
+                                    <div id="q-5-4">Moje, po prostu je kocham!</div>
                                 </div>
                                 <div id="q-back-5" class="q-button q-back">cofnij</div>
                             </div>
@@ -2431,33 +2446,32 @@
                                     winner = "Eyegasm";
                                 } else {
                                     if (c == l) {
-                                        if (c1>l1) winner = "Cheeky"
+                                        if (c1 > l1) winner = "Cheeky"
                                         else winner = "Liloosh"
                                     } else
                                     if (c == e) {
-                                        if (c1>e1) winner = "Cheeky"
+                                        if (c1 > e1) winner = "Cheeky"
                                         else winner = "Eyes On"
                                     } else
                                     if (c == g) {
-                                        if (c1>g1) winner = "Cheeky"
+                                        if (c1 > g1) winner = "Cheeky"
                                         else winner = "Eyegasm"
                                     } else
                                     if (l == e) {
-                                        if (l1>e1) winner = "Liloosh"
+                                        if (l1 > e1) winner = "Liloosh"
                                         else winner = "Eyes On"
                                     } else
                                     if (l == g) {
-                                        if (l1>g1) winner = "Liloosh"
+                                        if (l1 > g1) winner = "Liloosh"
                                         else winner = "Eyegasm"
                                     } else
                                     if (g == e) {
-                                        if (g1>e1) winner = "Eyegasm"
+                                        if (g1 > e1) winner = "Eyegasm"
                                         else winner = "Eyes On"
-                                    }
-                                    else winner = "błąd."
+                                    } else winner = "błąd."
                                 }
-                                    $("#q-result").addClass("active");
-                                    $("#q-result").html(`
+                                $("#q-result").addClass("active");
+                                $("#q-result").html(`
                                 
                                 <div id="q-intro" class="q-box active">
                                 <h2>Wygrywa ${winner}!</h2><br><br><br>
@@ -2470,7 +2484,7 @@
                                 
                                 `);
 
-                                }
+                            }
                         </script>
 
 
