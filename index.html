@@ -2069,10 +2069,132 @@
 
 
 
-
                         <style>
+                            #comparison {
+                                width: 420px;
+                                height: 420px;
+                                overflow: hidden;
+                                position: relative;
+                            }
+
+                            figure {
+                                position: absolute;
+                                background-size: cover;
+                                font-size: 0;
+                                width: 100%;
+                                height: 100%;
+                                margin: 0;
+                            }
+
+                            #divisor {
+                                background-size: cover;
+                                position: absolute;
+                                width: 50%;
+                                bottom: 0;
+                                height: 100%;
+                            }
+
+                            #divisor::before,
+                            #divisor::after {
+                                content: "";
+                                position: absolute;
+                                right: -2px;
+                                width: 2px;
+                                height: calc(50% - 25px);
+                                background: white;
+                                z-index: 3;
+                            }
+
+                            #divisor::before {
+                                top: 0;
+                            }
+
+                            #divisor::after {
+                                bottom: 0;
+                            }
+
+                            #handle {
+                                position: absolute;
+                                height: 50px;
+                                width: 50px;
+                                top: 50%;
+                                left: 50%;
+                                transform: translateY(-50%) translateX(-50%);
+                                z-index: 1;
+                                border: 2px solid white;
+                            }
+
+                            #handle::before,
+                            #handle::after {
+                                content: "";
+                                width: 0;
+                                height: 0;
+                                border: 6px inset transparent;
+                                position: absolute;
+                                top: 50%;
+                                margin-top: -6px;
+                            }
+
+                            #handle::before {
+                                border-right: 6px solid white;
+                                left: 50%;
+                                margin-left: -17px;
+                            }
+
+                            #handle::after {
+                                border-left: 6px solid white;
+                                right: 50%;
+                                margin-right: -17px;
+                            }
+
+                            input[type=range] {
+                                -webkit-appearance: none;
+                                -moz-appearance: none;
+                                position: absolute;
+                                top: 50%;
+                                left: -25px;
+                                transform: translateY(-50%);
+                                background-color: transparent;
+                                width: calc(100% + 50px);
+                                z-index: 2;
+                                border: 2px solid white;
+                                opacity: 0;
+
+                            }
+
+                            input[type=range]:focus,
+                            input[type=range]:active {
+                                border: none;
+                                outline: none;
+                            }
+
+                            input[type=range]::-webkit-slider-thumb {
+                                -webkit-appearance: none;
+                                border: none;
+                                height: 50px;
+                                width: 50px;
+                                background: transparent;
+                                border: 2px solid white;
+                            }
+
+                            input[type=range]::-moz-range-track {
+                                -moz-appearance: none;
+                                height: 15px;
+                                width: 100%;
+                                background-color: transparent;
+                                position: relative;
+                                outline: none;
+                            }
+
+                            @media screen and (max-width:420px) {
+                                #comparison {
+                                    height: 90vw;
+                                    width: 90vw;
+                                }
+                            }
+
                             #quiz-container {
-                                height: 500px;
+                                height: 600px;
                             }
 
                             .big_label {
@@ -2084,7 +2206,7 @@
                                 display: flex;
                                 flex-direction: column;
                                 opacity: 0;
-                                visibility: hidden;
+                                z-index: -1;
                                 transition: opacity 400ms ease-in-out;
                                 position: absolute;
                                 text-align: center;
@@ -2128,7 +2250,7 @@
                                 /* padding: 2em 4em; */
                                 background: #dca89e;
                                 cursor: pointer;
-                                font-size: 1.2em;
+                                font-size: 1.4em;
                                 color: #fff;
                                 height: 4em;
                                 line-height: 4em;
@@ -2145,17 +2267,94 @@
                                 }
                             }
 
+                            .q-result {
+                                opacity: 0;
+                            }
+
                             .active {
                                 opacity: 1;
-                                visibility: visible;
+                                z-index: 1;
+                            }
+
+                            .result-container {
+                                margin-top: 40px;
+                                display: flex;
+                                justify-content: space-between;
+                                align-items: center;
+                            }
+
+                            .result-action {
+                                width: 50%;
+                                display: flex;
+                                justify-content: center;
+                            }
+
+                            .result-text {
+                                font-size: 1.6em;
+                                width: 420px;
+                                text-align: justify;
+                            }
+
+                            .result-top {
+                                display: flex;
+                                gap: 50px;
+                                align-items: center;
+                                justify-content: space-between;
+                            }
+
+                            .result-heading {
+                                font-size: 3em;
+                                width: 50%;
+                                text-align: center;
+                            }
+
+                            .result-heading span {
+                                font-family: "GTSecraFine";
+                                font-size: 3em;
+                            }
+
+                            #result_buttons {
+                                font-size: 1.3em;
+                            }
+
+                            .intro-heading {
+                                font-size: 5em;
+                                font-style: italic;
+                                font-family: 'GTSecraFine';
+                            }
+
+                            .intro-desc {
+                                font-size: 2em;
+                                border-top: 2px solid;
+                                margin-top: 30px;
+                                padding-top: 30px;
+                                margin-bottom: 40px;
+                            }
+
+                            #q-intro {
+                                text-align: left;
+                                padding: 0 50px;
+                            }
+
+                            .intro-main {
+                                font-size: 1.6em;
+                                text-align: center;
+                                margin: 40px;
                             }
                         </style>
 
                         <div id="quiz-container">
                             <div id="q-intro" class="q-box active">
-                                <h2>Lorem ipsum dolor, sit amet consectetur adipisicing elit. Inventore beatae in,
-                                    temporibus facilis repellat quo tempore enim error nihil quas earum tempora est
-                                    ullam veniam do molestias! Inventore, debitis possimus.</h2><br><br><br>
+                                <div class="intro-heading">maskara idealna</div>
+                                <div class="intro-desc">znalezienie jej to długotrwały proces, polegający na
+                                    przemierzaniu kilometrów alejek oraz wielu stron internetowych w poszukiwaniu
+                                    Świętego Graala wśród tuszy do rzęs.</div>
+                                <div class="intro-main">Zdajemy sobie sprawę, że znalezienie maskary idealnej nie jest
+                                    łatwe – szczególnie, że wybór jest ogromny. Podkręcająca, pogrubiająca, odżywcza,
+                                    która będzie najlepsza dla Twoich rzęs? Mamy na to przepis. Przygotowaliśmy dla
+                                    Ciebie krótki quiz. Wypełnij go i dowiedz się, która maskara jest tą jedyną i
+                                    idealną! </div>
+
                                 <div id="q-start" class="q-button">START</div>
                             </div>
                             <div id="q-1" class="q-box">
@@ -2173,7 +2372,7 @@
                                 <div class="q-answers">
                                     <div id="q-2-1">Make-up no make-up</div>
                                     <div id="q-2-2">Glamour</div>
-                                    <div id="q-2-3">Trendowy</div>
+                                    <div id="q-2-3">Fashion</div>
                                     <div id="q-2-4">Classy and sassy</div>
                                 </div>
                                 <div id="q-back-2" class="q-button q-back">cofnij</div>
@@ -2206,8 +2405,73 @@
                                 </div>
                                 <div id="q-back-5" class="q-button q-back">cofnij</div>
                             </div>
-                            <div id="q-result"></div>
+                            <div id="q-result" class="q-result">
+                                <!--####-->
+                                <style>
+                                    figure {
+                                        background-image: url(https://paese.pl/data/include/cms/2022-zdjecia-karta-produktu/eyegasm_PO1.jpg);
+                                    }
+
+                                    #divisor {
+                                        background-image: url(https://paese.pl/data/include/cms/2022-zdjecia-karta-produktu/eyegasm_PRZED.jpg);
+                                    }
+                                </style>
+                                <div class="result-top">
+                                    <div id="comparison">
+                                        <figure>
+                                            <div id="handle"></div>
+                                            <div id="divisor"></div>
+                                        </figure>
+                                        <input type="range" min="0" max="100" value="50" id="slider"
+                                            oninput="moveDivisor()">
+                                    </div>
+                                    <div class="result-heading">
+                                        Twoja cecha to optymizm jak u <br><span>eyegasm</span>
+                                    </div>
+                                </div>
+                                <div class="result-container">
+                                    <div class="result-text">
+                                        Uwielbiasz być w centrum uwagi i lubisz, jak wokół Ciebie dużo się dzieje!
+                                        Efekt, jaki chcesz osiągnąć na Twoich rzęsach to ekstremalne wydłużenie i
+                                        objętość. Nie trzymamy cię już w niepewności. Idealną maskarą dla Ciebie będzie
+                                        Eyegasm.
+                                    </div>
+                                    <div class="result-action">
+                                        <form id="result_form" action="https://paese.pl/basketchange.php" method="post"
+                                            data-product_id="1099" class="enable"><input id="projector_product_hidden"
+                                                type="hidden" name="product" value="1099"><input
+                                                id="projector_size_hidden" type="hidden" name="size" autocomplete="off"
+                                                value="onesize"><input id="projector_mode_hidden" type="hidden"
+                                                name="mode" value="1">
+
+                                            <div class="result_buttons" id="result_buttons">
+                                                <button class="btn-large result_butttons_buy"
+                                                    id="projector_button_basket" type="submit"
+                                                    title="Dodaj produkt do koszyka">
+                                                    Dodaj do koszyka
+                                                </button>
+                                            </div>
+                                        </form>
+                                    </div>
+                                </div>
+                                <!--####-->
+                            </div>
                         </div>
+
+                        <script>
+                            var divisor = document.getElementById("divisor"),
+                                handle = document.getElementById("handle"),
+                                slider = document.getElementById("slider");
+
+                            function moveDivisor() {
+                                handle.style.left = slider.value + "%";
+                                divisor.style.width = slider.value + "%";
+                            }
+
+                            window.onload = function () {
+                                moveDivisor();
+                            };
+                        </script>
 
                         <script>
                             var c1 = 0,
@@ -2471,18 +2735,65 @@
                                     } else winner = "błąd."
                                 }
                                 $("#q-result").addClass("active");
-                                $("#q-result").html(`
-                                
-                                <div id="q-intro" class="q-box active">
-                                <h2>Wygrywa ${winner}!</h2><br><br><br>
-                                cheeky: ${c}<br>
-                                liloosh: ${l}<br>
-                                eyeson: ${e}<br>
-                                eyegasm: ${g}<br>
+                                if (winner == "Eyegasm") {
+                                    $("#q-result").html(`
+                                    <style>
+                                    figure {
+                                        background-image: url(https://paese.pl/data/include/cms/2022-zdjecia-karta-produktu/eyegasm_PO1.jpg);
+                                    }
+
+                                    #divisor {
+                                        background-image: url(https://paese.pl/data/include/cms/2022-zdjecia-karta-produktu/eyegasm_PRZED.jpg);
+                                    }
+                                </style>
+                                <div class="result-top">
+                                    <div id="comparison">
+                                        <figure>
+                                            <div id="handle"></div>
+                                            <div id="divisor"></div>
+                                        </figure>
+                                        <input type="range" min="0" max="100" value="50" id="slider"
+                                            oninput="moveDivisor()">
+                                    </div>
+                                    <div class="result-heading">
+                                        Twoja cecha to optymizm jak u <br><span>eyegasm</span>
+                                    </div>
+                                </div>
+                                <div class="result-container">
+                                    <div class="result-text">
+                                        Uwielbiasz być w centrum uwagi i lubisz, jak wokół Ciebie dużo się dzieje!
+                                        Efekt, jaki chcesz osiągnąć na Twoich rzęsach to ekstremalne wydłużenie i
+                                        objętość. Nie trzymamy cię już w niepewności. Idealną maskarą dla Ciebie będzie
+                                        Eyegasm.
+                                    </div>
+                                    <div class="result-action">
+                                        <form id="result_form" action="https://paese.pl/basketchange.php" method="post"
+                                            data-product_id="1099" class="enable"><input id="projector_product_hidden"
+                                                type="hidden" name="product" value="1099"><input
+                                                id="projector_size_hidden" type="hidden" name="size" autocomplete="off"
+                                                value="onesize"><input id="projector_mode_hidden" type="hidden"
+                                                name="mode" value="1">
+
+                                            <div class="result_buttons" id="result_buttons">
+                                                <button class="btn-large result_butttons_buy"
+                                                    id="projector_button_basket" type="submit"
+                                                    title="Dodaj produkt do koszyka">
+                                                    Dodaj do koszyka
+                                                </button>
+                                            </div>
+                                        </form>
+                                    </div>
                                 </div>
 
+                                    
+                                    `);
+                                } else {
+                                    $("#q-result").html(`
+                                
+                                <h2>Wygrywa ${winner}!</h2>
                                 
                                 `);
+                                }
 
                             }
                         </script>
