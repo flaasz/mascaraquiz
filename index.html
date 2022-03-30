@@ -2347,6 +2347,12 @@
                                 margin: 40px;
                             }
 
+                            @media screen and (max-width: 1200px) {
+                                .result-heading {
+                                    font-size: 2.5em;
+                                }
+                            }
+
                             @media screen and (max-width: 796px) {
                                 #q-intro {
                                     padding: 0;
@@ -2357,7 +2363,7 @@
                                 }
 
                                 #quiz-container {
-                                    height: auto;
+                                    height: 900px;
                                 }
 
                                 .result-top {
@@ -2366,6 +2372,7 @@
 
                                 .result-heading {
                                     width: 100%;
+                                    font-size: 3em;
                                 }
 
                                 .result-heading span {
@@ -2847,7 +2854,7 @@
                                     </div>
                                     `);
                                     initDivisor();
-                                } else 
+                                } else
                                 if (winner == "Liloosh") {
                                     $("#q-result").html(`
 
@@ -2895,8 +2902,8 @@
                                         </div>
                                     </div>
                                     `);
-                                    initDivisor();                                
-                                } else 
+                                    initDivisor();
+                                } else
                                 if (winner == "Cheeky") {
                                     $("#q-result").html(`
 
